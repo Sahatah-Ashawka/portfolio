@@ -1,0 +1,74 @@
+{
+  "profile": {
+    "name": "Aung Kuang Moe",
+    "role": "Cybersecurity Student",
+    "university": "University of Information Technology",
+    "bio": "Just a noob who is far from technology",
+    "photo": "/uploads/1779984022110-Screenshot_2026-05-09_174401.png",
+    "gallery": [],
+    "socials": {
+      "github": "",
+      "linkedin": "",
+      "email": "",
+      "tryhackme": "",
+      "cisco": "",
+      "medium": ""
+    }
+  },
+  "posts": [
+    {
+      "id": "43e718d5-8663-4453-b60e-51ef262f564d",
+      "title": "tom",
+      "tags": "tom",
+      "content": "tom",
+      "image": "",
+      "updatedAt": "2026-05-28T11:31:26.898Z"
+    },
+    {
+      "id": "bff6f5e7-10f5-4152-9f18-561309e17fd3",
+      "title": "ok lr",
+      "tags": "cab",
+      "content": "dd",
+      "image": "",
+      "updatedAt": "2026-05-28T11:31:09.496Z"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "fb803111-f751-4129-8bd1-d084b4cf989a",
+      "name": "d",
+      "platform": "d",
+      "date": "3222-03-03",
+      "link": "",
+      "image": "/uploads/1779965229167-Coursera_YB9T84W4J2FS.pdf"
+    },
+    {
+      "id": "b29e9d13-cd77-4f0d-9b7c-0ac0ea9acae2",
+      "name": "red",
+      "platform": "Google",
+      "date": "2222-02-22",
+      "link": "",
+      "image": "/uploads/1779964618525-Coursera_T3F74RUMGU5M.pdf"
+    },
+    {
+      "id": "288d814c-37a6-4477-9353-3ad826d77c05",
+      "name": "red",
+      "platform": "red",
+      "date": "2222-02-22",
+      "link": "",
+      "image": "/uploads/1779961380865-redops_academy_-_offensive_security_junior.png"
+    }
+  ],
+  "aboutPhotos": [
+    {
+      "id": "d01aa784-ced5-4bac-b695-0e3cb163753d",
+      "src": "/uploads/1779983996376-Screenshot_2026-05-12_100155.png",
+      "createdAt": "2026-05-28T15:59:56.385Z"
+    },
+    {
+      "id": "5f39eb84-05ee-4e0c-9556-6d0c7b56086d",
+      "src": "/uploads/1779984028725-Screenshot_2026-05-13_152542.png",
+      "createdAt": "2026-05-28T16:00:28.731Z"
+    }
+  ]
+}

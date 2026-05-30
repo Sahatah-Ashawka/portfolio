@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Portfolio Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="bg-lines" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <h1>~/cyber-identity</h1>
+    <nav class="top-nav">
+      <a data-route="/about" href="/about">About Me</a>
+      <a data-route="/certificates" href="/certificates">Certificates</a>
+      <a data-route="/blogs" href="/blogs">Blogs</a>
+    </nav>
+    <button id="toggle-admin" class="neon-btn" type="button">Admin Mode</button>
+  </header>
+
+  <main class="grid">
+    <aside class="left-panel card" id="tags-panel">
+      <section id="tags-section" class="side-section">
+        <h2>Tags</h2>
+        <div id="tag-list" class="tag-list"></div>
+      </section>
+    </aside>
+
+    <section class="center-panel">
+      <section class="card block" id="photos-block">
+        <div class="section-head">
+          <h2>My Photos</h2>
+        </div>
+        <div class="cert-controls">
+          <button id="about-prev" class="ghost-btn" type="button">◀</button>
+          <span id="about-counter" class="muted"></span>
+          <button id="about-next" class="ghost-btn" type="button">▶</button>
+        </div>
+        <div class="auto-meter">
+          <div id="about-progress" class="auto-meter-fill"></div>
+        </div>
+        <div class="row admin-only about-admin-actions">
+          <button id="about-add-photo" class="neon-btn" type="button">+ Add Photo</button>
+          <button id="about-delete-photo" class="danger-btn" type="button">Delete Current Photo</button>
+          <input id="about-add-photo-file" type="file" accept="image/*" hidden />
+        </div>
+        <div class="about-photo-wrap">
+          <img id="about-photo" class="about-photo" alt="Personal photo" hidden />
+          <p id="about-photo-empty" class="muted">No photos added yet. Use + Add Photo.</p>
+        </div>
+      </section>
+
+      <div class="card search-card" id="search-card">
+        <input id="search-input" class="search-input" placeholder="$ search tags... (#cab)" />
+      </div>
+
+      <section class="card block" id="posts-block">
+        <div class="section-head">
+          <h2>All Posts</h2>
+          <button class="neon-btn admin-only" id="new-post" type="button">+ New Post</button>
+        </div>
+        <div id="posts-list" class="list"></div>
+      </section>
+
+      <section class="card block" id="certs-block">
+        <div class="section-head">
+          <h2>Certificates</h2>
+          <button class="neon-btn admin-only" id="new-cert" type="button">+ New Certificate</button>
+        </div>
+        <div class="cert-controls">
+          <button id="cert-prev" class="ghost-btn" type="button">◀</button>
+          <span id="cert-counter" class="muted"></span>
+          <button id="cert-next" class="ghost-btn" type="button">▶</button>
+        </div>
+        <div class="auto-meter">
+          <div id="cert-progress" class="auto-meter-fill"></div>
+        </div>
+        <div id="certs-list" class="list"></div>
+      </section>
+    </section>
+
+    <aside class="right-panel" id="profile-panel">
+      <section class="card profile-card">
+        <img id="profile-photo" class="avatar" alt="Profile" />
+        <h2 id="profile-name"></h2>
+        <p id="profile-role" class="accent"></p>
+        <p id="profile-uni" class="muted"></p>
+        <p id="profile-bio" class="muted"></p>
+        <button class="neon-btn admin-only" id="edit-profile" type="button">Edit Profile</button>
+      </section>
+      <section class="card block" id="connect-panel">
+        <h3 class="connect-title">Connect</h3>
+        <ul id="social-list" class="social-list"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <dialog id="profile-dialog" class="modal">
+    <form id="profile-form" class="modal-form" method="dialog">
+      <h3>Edit Profile</h3>
+      <input type="hidden" id="profile-existing-photo" />
+      <label>Name<input id="f-name" required /></label>
+      <label>Role / Study<input id="f-role" required /></label>
+      <label>University<input id="f-uni" required /></label>
+      <label>Bio<textarea id="f-bio" rows="4" required></textarea></label>
+      <label>Photo URL<input id="f-photo-url" /></label>
+      <label>Or Upload Photo<input id="f-photo-file" type="file" accept="image/*" /></label>
+      <label>GitHub<input id="f-github" /></label>
+      <label>LinkedIn<input id="f-linkedin" /></label>
+      <label>Email<input id="f-email" /></label>
+      <label>TryHackMe<input id="f-tryhackme" /></label>
+      <label>Cisco<input id="f-cisco" /></label>
+      <label>Medium<input id="f-medium" /></label>
+      <div class="row">
+        <button class="neon-btn" type="submit">Save</button>
+        <button class="ghost-btn" type="button" data-close>Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="post-dialog" class="modal">
+    <form id="post-form" class="modal-form" method="dialog">
+      <h3>Write Story</h3>
+      <input type="hidden" id="post-id" />
+      <input type="hidden" id="post-existing-image" />
+      <label>Tags (comma separated)<input id="p-tags" /></label>
+      <div class="editor-wrap">
+        <div class="editor-toolbar">
+          <button type="button" class="ghost-btn tool-btn" data-editor-cmd="bold"><b>B</b></button>
+          <button type="button" class="ghost-btn tool-btn" data-editor-cmd="italic"><i>I</i></button>
+          <button type="button" class="ghost-btn tool-btn" data-editor-cmd="formatBlock" data-editor-value="H1">H1</button>
+          <button type="button" class="ghost-btn tool-btn" data-editor-cmd="formatBlock" data-editor-value="H2">H2</button>
+          <button type="button" class="ghost-btn tool-btn" data-editor-cmd="insertUnorderedList">List</button>
+          <button type="button" class="ghost-btn tool-btn" data-editor-action="image">Image</button>
+          <button type="button" class="ghost-btn tool-btn" data-editor-action="code">Code</button>
+          <button type="button" class="ghost-btn tool-btn" data-editor-action="link">Link</button>
+        </div>
+        <div id="p-title-editor" class="title-editor" contenteditable="true" data-placeholder="Title"></div>
+        <div id="p-content-editor" class="content-editor" contenteditable="true" data-placeholder="Tell your story..."></div>
+        <input id="p-inline-image-file" type="file" accept="image/*" hidden />
+      </div>
+      <div class="row">
+        <button class="neon-btn" type="submit">Save</button>
+        <button class="ghost-btn" type="button" data-close>Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="cert-dialog" class="modal">
+    <form id="cert-form" class="modal-form" method="dialog">
+      <h3>Certificate</h3>
+      <input type="hidden" id="cert-id" />
+      <input type="hidden" id="cert-existing-image" />
+      <label>Name<input id="c-name" required /></label>
+      <label>Platform<input id="c-platform" required placeholder="TryHackMe / Cisco" /></label>
+      <label>Issue Date<input id="c-date" type="date" required /></label>
+      <label>Credential URL<input id="c-link" /></label>
+      <label>Image URL<input id="c-image-url" /></label>
+      <label>Or Upload Image/PDF<input id="c-image-file" type="file" accept="image/*,.pdf,application/pdf" /></label>
+      <div class="row">
+        <button class="neon-btn" type="submit">Save</button>
+        <button class="ghost-btn" type="button" data-close>Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="post-template">
+    <article class="entry">
+      <img class="entry-image" alt="Post image" hidden />
+      <div class="entry-header">
+        <h3 class="entry-title"></h3>
+        <p class="entry-date"></p>
+      </div>
+      <div class="chips"></div>
+      <p class="entry-content"></p>
+      <div class="row admin-only">
+        <button class="ghost-btn edit">Edit</button>
+        <button class="danger-btn delete">Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <template id="cert-template">
+    <article class="entry">
+      <img class="entry-image" alt="Certificate image" hidden />
+      <canvas class="cert-pdf-canvas" hidden></canvas>
+      <p class="entry-meta cert-platform"></p>
+      <a class="entry-link cert-link" target="_blank" rel="noreferrer noopener"></a>
+      <div class="row admin-only">
+        <button class="ghost-btn edit">Edit</button>
+        <button class="danger-btn delete">Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
